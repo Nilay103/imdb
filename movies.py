@@ -13,7 +13,7 @@ class MoviesApi(Resource):
         movies = mongo.db.movies.find(filter_params)
         return custom_response([movie for movie in movies], 'Success.', 201)
 
-    # @authenticate()
+    @authenticate
     def post(self):
         movie = request.json
         id = mongo.db.movies.insert(movie)
@@ -21,7 +21,7 @@ class MoviesApi(Resource):
         return custom_response(new_movie, 'Object created Successfully.', 201)
 
 class MovieApi(Resource):
-    # @authenticate()
+    # @authenticate
     def put(self, id):
         movie = request.json
         id = movie.pop('_id', None)
@@ -31,7 +31,7 @@ class MovieApi(Resource):
         mongo.db.movies.update_one({"_id": ObjectId(id)}, {"$set": movie})
         return custom_response([], 'Object Updated Successfully.', 412)
 
-    # @authenticate()
+    # @authenticate
     def delete(self, id):
         movie = request.json
         id = movie.pop('_id', None)

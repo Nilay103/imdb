@@ -53,4 +53,4 @@ def login():
         'user': user['_id'].__str__(),
         'expiration': str(datetime.utcnow() + timedelta(hours=1))
     }, SECRET_KEY)
-    return custom_response(token, 'Login Successful.', status=201)
+    return custom_response(token.decode('utf-8'), 'Login Successful.', status=201)
