@@ -1,3 +1,4 @@
+
 # Movies CRUD API using Flask and Mongodb.
 
 Howdy! Welcome to the Flask Rest API. In this project I've tried to create a simple Movies CRUD API and authentication by using Flask, pymongo and jwt.
@@ -25,6 +26,7 @@ To run this project:
   7. run: python app.py
   8. TO run test cases: python -m unittest test.py
   
-  loadtest result for 50000 entries.
+  loadtest result for 50000 entries. (After applying caching!)
+  ![Screenshot from 2021-06-13 22-57-08](https://user-images.githubusercontent.com/43541680/121816813-60be1800-cc9b-11eb-87e9-d230030a8ba2.png)
   
-  
+For working demo please visit [this](http://34.205.125.170/api/movies/)
