@@ -13,3 +13,5 @@ config.read(CONFIG_FILE)
 SECRET_KEY = config.get('main', 'SECRET_KEY')
 MONGODB_URL = config.get('database', 'MONGODB_URL')
 DEBUG = config.getboolean('main', 'DEBUG')
+
+DEFAULT_PAGE_LIMIT = 2

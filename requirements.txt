@@ -6,3 +6,4 @@ flask-restful
 PyJWT==2.1.0
 cryptography==3.4.7
 passlib~=1.7.4
+flask-rest-paginate==1.1.3

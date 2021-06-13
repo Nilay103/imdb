@@ -5,6 +5,7 @@ from constants import MONGODB_URL, SECRET_KEY
 from database import initialize_db
 from registration import registration_bp
 
+
 app = Flask(__name__)
 app.secret_key = SECRET_KEY
 app.config["MONGO_URI"] = MONGODB_URL
