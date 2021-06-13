@@ -1,14 +1,15 @@
-from database import mongo
 from datetime import datetime, timedelta
 
 import jwt
-from passlib.handlers.sha2_crypt import sha256_crypt
-from customs import custom_response
-from constants import SECRET_KEY
 from flask import Blueprint, request
+from passlib.handlers.sha2_crypt import sha256_crypt
 
+from constants import SECRET_KEY
+from customs import custom_response
+from database import mongo
 
 registration_bp = Blueprint('registration_bp', __name__)
+
 
 @registration_bp.route('/signup', methods=['POST'])
 def signup():
@@ -28,10 +29,10 @@ def signup():
     if user:
         return custom_response([], 'User Already Exists', status=412)
 
-    #do not save pwd as a plain text
-    _hashed_password = sha256_crypt.hash(pwd)
+    # do not save pwd as a plain text
+    hashed_password = sha256_crypt.hash(pwd)
     # save details
-    mongo.db.users.insert({'name': name, 'email': email, 'pwd': _hashed_password})
+    mongo.db.users.insert_one({'name': name, 'email': email, 'pwd': hashed_password})
     return custom_response([], 'Success.', status=201)
 
 

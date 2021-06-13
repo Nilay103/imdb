@@ -1,10 +1,10 @@
 from functools import wraps
 
 import jwt
-from customs import custom_response
+from flask import request
 
 from constants import SECRET_KEY
-from flask import request
+from customs import custom_response
 
 
 def authenticate(f):

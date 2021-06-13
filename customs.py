@@ -1,6 +1,8 @@
 import json
+
 from bson import json_util
-from flask import jsonify, make_response
+from flask import make_response
+
 
 def custom_response(data, message, status):
     count = len(data) if isinstance(data, list) else 1
@@ -9,6 +11,7 @@ def custom_response(data, message, status):
         'data': data,
         'message': message
     })), status)
+
 
 def custom_paginated_response(results, url, offset, limit):
     count = len(results)
