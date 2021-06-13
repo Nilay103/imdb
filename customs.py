@@ -22,7 +22,6 @@ def custom_paginated_response(results, url, offset, limit):
     obj = {}
     obj['offset'] = offset
     obj['limit'] = limit
-    obj['count'] = count
 
     if offset == 1:
         obj['previous'] = ''
@@ -38,6 +37,7 @@ def custom_paginated_response(results, url, offset, limit):
         obj['next'] = url + '?offset=%d&limit=%d' % (start_copy, limit)
 
     obj['data'] = results[offset:(offset + limit)]
+    obj['count'] = len(obj['data'])
     obj['message'] = 'Success.'
     return make_response(json.loads(json_util.dumps({
         **obj
