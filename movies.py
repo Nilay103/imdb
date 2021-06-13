@@ -19,15 +19,12 @@ class MoviesApi(Resource):
         page_limit = int(request.args.get('limit', DEFAULT_PAGE_LIMIT))
         offset = int(request.args.get('offset', 0))
 
-        movies = mongo.db.mo1.find(filter_param).sort('_id', pymongo.DESCENDING)
-        # return json.loads(json_util.dumps((movies)))
+        movies = mongo.db.movies.find(filter_param).sort('_id', pymongo.DESCENDING)
         return custom_paginated_response([movie for movie in movies], request.base_url, offset, page_limit)
 
     @authenticate
     def post(self):
         movie = request.json
-        # mongo.db.mo1.insert_many(movie)
-        # return custom_response([], '.', 201)
         if mongo.db.movies.find_one({'name': movie.get('name'), 'director': movie['director']}):
             return custom_response([], 'Duplicate Movie Being Created', 412)
         movie['_id'] = mongo.db.movies.insert_one(movie)
