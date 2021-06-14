@@ -3,7 +3,7 @@ from bson.objectid import ObjectId
 
 from flask import Flask, request
 from flask_caching import Cache
-from flask_pymongo import pymongo, PyMongo
+from flask_pymongo import pymongo
 from flask_restplus import Api, Resource
 
 from authentication import authenticate
@@ -19,11 +19,11 @@ app.config["MONGO_URI"] = MONGODB_URL
 api = Api(app)
 app.register_blueprint(registration_bp)
 cache = Cache(app, config={'CACHE_TYPE': 'SimpleCache'})
-name_space = api.namespace('main', description='Main APIs')
+name_space = api.namespace('api', description='Main APIs')
 initialize_db(app)
 
 
-@name_space.route('/movies')
+@name_space.route('/movies/')
 class MoviesApi(Resource):
     @cache.cached(timeout=500)
     def get(self):
@@ -41,7 +41,7 @@ class MoviesApi(Resource):
         movie = request.json
         if mongo.db.movies.find_one({'name': movie.get('name'), 'director': movie['director']}):
             return custom_response([], 'Duplicate Movie Being Created', 412)
-        movie['_id'] = mongo.db.movies.insert_one(movie)
+        mongo.db.movies.insert_one(movie)
         return custom_response(movie, 'Object created Successfully.', 201)
 
 @name_space.route('/movies/<id>')
@@ -66,4 +66,4 @@ class MovieApi(Resource):
         return custom_response([], 'Movie Not found', 412)
 
 if __name__ == "__main__":
-    app.run(debug=DEBUG)
+    app.run(host='0.0.0.0', port=5000, debug=DEBUG)

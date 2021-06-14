@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  flask:
+    build: .
+    container_name: flask
+    restart: always
+    command: python app.py
+    ports: 
+      - 5000:5000
+    volumes: 
+      - .:/app
+    depends_on:
+        - mongodb
+
+  mongodb:
+    image: mongo:4.0.8
+    container_name: mongodb
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: fynd
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: fynd
+      MONGODB_DATA_DIR: /data/db
+      MONDODB_LOG_DIR: /dev/mongolog
+    volumes: 
+      - .dbdata:/var/lib/flask_mongo
