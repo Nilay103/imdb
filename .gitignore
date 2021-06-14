@@ -3,3 +3,6 @@ __pycache__/
 config.ini
 *.log
 .vscode/
+.config.ini.swp
+.movies.py.swp
+.requirements.txt.*
