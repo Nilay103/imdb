@@ -1,4 +1,3 @@
-from re import I
 from bson.objectid import ObjectId
 
 from flask import Flask, request
@@ -35,6 +34,9 @@ class MoviesApi(Resource):
 
         movies = mongo.db.movies.find(filter_param).sort('_id', pymongo.DESCENDING)
         return custom_paginated_response([movie for movie in movies], request.base_url, offset, page_limit)
+        # if you want to return as html page directly! 
+        # movies = respnose.json['data']
+        # return render_template("movies.html", len = len(movies), movies = movies)
 
     @authenticate
     def post(self):

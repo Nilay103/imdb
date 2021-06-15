@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+  
+<html>
+<head>
+    <title>Awesome Movies</title>
+</head>
+<body>
+  
+    <table style="margin-left: 20px;">
+        <!-- Table headers -->
+            <th>
+                <tr style="color: green; ">    
+                    <td>Sr.</td>
+                    <td>Movie Name</td>
+                    <td>Director</td>
+                </tr>
+            </th>              
+        {%for i in range(len)%}          
+            <tr>
+                <td>{{i}}</td>
+                <td>{{movies[i][0]}}</td>
+            </tr>
+        {%endfor%}
+    </table>
+
+</body>
+</html>
