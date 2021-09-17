@@ -10,6 +10,7 @@ config = RawConfigParser()
 config.read(CONFIG_FILE)
 
 CONST = "THIS IS A NEW CONST WHICH DOESN'T CONFLICT."
+CONST_TWO = "LOL"
 
 # fetching key variables from config files.
 SECRET_KEY = config.get('main', 'SECRET_KEY')
