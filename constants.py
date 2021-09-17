@@ -17,3 +17,5 @@ MONGODB_URL = config.get('database', 'MONGODB_URL')
 DEBUG = config.getboolean('main', 'DEBUG')
 
 DEFAULT_PAGE_LIMIT = 25
+
+CONST_NEW = "THIS CONST MAY GENERATE CONFLICT."
